@@ -92,7 +92,7 @@ namespace BllodSugarTester.Models
 
         [Required]
         [Display(Name = "Your Lower Blood Sugar Range Number")]
-        public string BSLowerrNumber { get; set; }
+        public string BSLowerNumber { get; set; }
     }
 
     public class ResetPasswordViewModel

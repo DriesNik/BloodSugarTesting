@@ -22,9 +22,12 @@ namespace BllodSugarTester.Migrations
                    DoctorId = c.String(),
                    BSUpperNumber = c.Int(),
                    BSLowerNumber = c.Int(),
-
-
-               })
+                   PhoneNumberConfirmed = c.String(),
+                   TwoFactorEnabled = c.String(),
+                   LockoutEndDateUtc = c.String(),
+                   LockoutEnabled = c.String(),
+                   AccessFailedCount = c.String(),
+        })
             .PrimaryKey(t => t.Id)
             .Index(t => t.UserName, unique: true, name: "UserNameIndex")
 
