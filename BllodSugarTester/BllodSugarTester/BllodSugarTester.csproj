@@ -201,6 +201,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702131419466_InitialCreate.cs" />
+    <Compile Include="Migrations\201702131419466_InitialCreate.Designer.cs">
+      <DependentUpon>201702131419466_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702131432156_RebuildingTables.cs" />
+    <Compile Include="Migrations\201702131432156_RebuildingTables.Designer.cs">
+      <DependentUpon>201702131432156_RebuildingTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702131511036_AddingBloodSugarTable.cs" />
+    <Compile Include="Migrations\201702131511036_AddingBloodSugarTable.Designer.cs">
+      <DependentUpon>201702131511036_AddingBloodSugarTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -276,6 +289,17 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702131419466_InitialCreate.resx">
+      <DependentUpon>201702131419466_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702131432156_RebuildingTables.resx">
+      <DependentUpon>201702131432156_RebuildingTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702131511036_AddingBloodSugarTable.resx">
+      <DependentUpon>201702131511036_AddingBloodSugarTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

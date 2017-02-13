@@ -79,6 +79,20 @@ namespace BllodSugarTester.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+        
+        [Display(Name = "Doctor Id")]
+        public string DoctorId { get; set; }
+
+        [Required]
+        [Display(Name = "Your Upper Blood Sugar Range Number")]
+        public string BSUpperNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Your Lower Blood Sugar Range Number")]
+        public string BSLowerrNumber { get; set; }
     }
 
     public class ResetPasswordViewModel
