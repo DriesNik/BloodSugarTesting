@@ -1,0 +1,22 @@
+ 
+
+
+blood sugar table
+FK userid		FK
+time			
+date			
+blood sugar		int
+FK BSrange??
+above range		bool
+in range		bool
+below range		bool
+FK doctor id??
+
+user table
+user id
+password		hashpass
+email			email
+doc id			string
+bs upper		int
+bs lower		int
+
