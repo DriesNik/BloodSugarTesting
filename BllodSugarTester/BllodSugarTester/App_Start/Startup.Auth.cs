@@ -58,11 +58,11 @@ namespace BllodSugarTester
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "359173490060-648im88guobnnhdb2hoqf3e7taqbrvhr.apps.googleusercontent.com",
+                ClientSecret = "SXPrGz-gIUOclmZHLNy4qomw"
+            });
         }
     }
 }
