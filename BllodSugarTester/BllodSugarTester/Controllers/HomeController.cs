@@ -32,5 +32,11 @@ namespace BllodSugarTester.Controllers
 
             return View();
         }
+        public ActionResult AddingSugar()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

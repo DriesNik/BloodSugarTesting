@@ -10,12 +10,23 @@
     <button id="authorize-button" style="display: none;">Authorize</button>
     <button id="signout-button" style="display: none;">Sign Out</button>
 
-    <pre id="content"></pre>
+    @*<pre id="content"></pre>*@
     <div id="Path">
+
+    </div>
+
+    
+    <div>
         
+        <label for="Size">Blood Sugar:</label>
+        <input type="text" id="blood" value="" />
     </div>
     <div>
-        <button onclick="newEvent()" id="search" class="btn btn-default">Search</button>
+        <button onclick="newEvent()" type="submit" id="blood" class="btn btn-default">Submit Blood Sugar Number</button>
+    </div>
+
+    <div>
+       
     </div>
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -64,10 +75,10 @@
        */
       function updateSigninStatus(isSignedIn) {
           if (isSignedIn) {
-              
+
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          listUpcomingEvents();
+          
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
@@ -100,63 +111,11 @@
         pre.appendChild(textContent);
       }
 
-      /**
-       * Print the summary and start datetime/date of the next ten events in
-       * the authorized user's calendar. If no events are found an
-       * appropriate message is printed.
-       */
-      function listUpcomingEvents() {
-        gapi.client.calendar.events.list({
-            'calendarId': 'fb7ei8c6qvhl74q4iioc36gh00@group.calendar.google.com',
-          'timeMax': (new Date()).toISOString(),
-          'showDeleted': false,
-          'singleEvents': true,
-          'maxResults': 100,
-          'orderBy': 'startTime'
-        }).then(function(response) {
-          var events = response.result.items;
-          appendPre('Previous Numbers');
-          
-             
-          console.log(response);
-          if (events.length > 0) {
-            for (i = 0; i < events.length; i++) {
-              var event = events[i];
-              var when = event.start.dateTime;
-              if (!when) {
-                when = event.start.date;
-              }
-              appendPre(event.summary + ' (' + when + ')')
-            }
-          } else {
-            appendPre('No upcoming events found.');
-          }
-        });
-      }
-
-      function addEvents() {
-
-      }
-
-      //function makeApiCall() {
-      //    gapi.client.load('calendar', 'v3', function () {
-      //        //var requests = gapi.client.calendar.events.list({
-      //        var request = gapi.client.calendarList.insert(body = calendar_list_entry).execute();
-      //        //({
-      //        //    'calendarId': 'rope'
-      //        //});
-
-      //        request.execute(function (resp) {
-      //            console.log(resp)
-      //        });
-      //    });
-      //}
-        
       function newCalendar() {
           var request = gapi.client.calendar.calendars.insert({
               "resource":
                     {
-                        
+
                         "summary": "Blood Sugar Numbers",
                         "description": "nope",
                         "timezone": "America/Chicago"
@@ -167,22 +126,23 @@
               console.log(response);
           });
       }
-        
-      function newEvent() {
 
+      function newEvent() {
+          var x = document.getElementById("blood").value;
+          console.log(x);
           var request = gapi.client.calendar.events.insert({
               "calendarId": "fb7ei8c6qvhl74q4iioc36gh00@group.calendar.google.com",
               "start": {
                   "dateTime":(new Date()).toISOString(),
-                  "timezone": "America/Chicago" 
+                  "timezone": "America/Chicago"
                 },
               "end": {
                   "dateTime":(new Date()).toISOString(),
-                  "timezone": "America/Chicago" 
+                  "timezone": "America/Chicago"
               },
-              "summary": "147",
+              "summary": x,
               "description": "nope",
-              
+
           });
           //alert(request);
           request.execute(function (response) {
@@ -190,7 +150,7 @@
           });
       }
       function testThis() {
-          
+
 
 
 
@@ -215,10 +175,10 @@
               });
           };
 
-     
-        
+
+
     </script>
-  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
