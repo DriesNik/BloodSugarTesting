@@ -2,12 +2,11 @@
 
 using System.Web.Mvc;
 using System.Data.Entity;
-using System.Threading.Tasks;
 using BllodSugarTester.Models;
 
 namespace BllodSugarTester.Controllers
 {
-   
+
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -48,7 +47,7 @@ namespace BllodSugarTester.Controllers
         {
             BloodSugars data = new BloodSugars();
             data = new BloodSugars { Time = BS.Time, Date = BS.Date, BloodSugar = BS.BloodSugar, UserId = BS.UserId };
-            db.Entry(data).State = EntityState.Modified;
+            
             db.BloodSugar.Add(data);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -254,12 +254,17 @@
     <Compile Include="Migrations\201702131740425_RebuildingTables1.Designer.cs">
       <DependentUpon>201702131740425_RebuildingTables1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702162143210_pie.cs" />
+    <Compile Include="Migrations\201702162143210_pie.Designer.cs">
+      <DependentUpon>201702162143210_pie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BloodSugar.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\tes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -358,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702131740425_RebuildingTables1.resx">
       <DependentUpon>201702131740425_RebuildingTables1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702162143210_pie.resx">
+      <DependentUpon>201702162143210_pie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

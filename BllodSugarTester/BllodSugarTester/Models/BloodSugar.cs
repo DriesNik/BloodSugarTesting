@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace BllodSugarTester.Models
 {
     public class BloodSugars
     {
+        
+        private string time;
         [Key]
         public int Id { get; set; }
-        public string Time { get; set; }
-        public string Date { get; set; }
+        public string Time { get { return (new DateTime().ToString()); } set { time = (new DateTime().ToString()); } }
+        public string Date { get { return (new DateTime().ToString()); } set { time = (new DateTime().ToString()); } }
         public string BloodSugar { get; set; }
         public string UserId { get; set; }
+        
     }
 }

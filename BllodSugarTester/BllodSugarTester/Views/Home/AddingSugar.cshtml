@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 <head>
     <title>Google Calendar API Quickstart</title>
     <meta charset='utf-8' />
@@ -15,16 +15,16 @@
 
     </div>
 
-    
+    <form method="post">
     <div>
-        
+        <input name="UserId" value="@User.Identity.GetUserId()"/>
         <label for="Bs">Blood Sugar:</label>
         <input type="text" id="blood" name="BloodSugar" value="" />
     </div>
     <div>
-        <button onclick="newEvent()" type="submit" id="blood" class="btn btn-default">Submit Blood Sugar Number</button>
+        <input onclick="newEvent()" type="submit" id="blood" class="btn btn-default" value="submit">
     </div>
-
+    </form>
     <div>
        
     </div>
@@ -148,6 +148,7 @@
           request.execute(function (response) {
               console.log(response)
           });
+          
       }
       function testThis() {
 
