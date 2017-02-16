@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
+
 using System.Web.Mvc;
+using System.Data.Entity;
+using System.Threading.Tasks;
+using BllodSugarTester.Models;
 
 namespace BllodSugarTester.Controllers
 {
+   
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
             return View();
@@ -32,11 +35,23 @@ namespace BllodSugarTester.Controllers
 
             return View();
         }
+        
         public ActionResult AddingSugar()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddingSugar(BloodSugars BS)
+        {
+            BloodSugars data = new BloodSugars();
+            data = new BloodSugars { Time = BS.Time, Date = BS.Date, BloodSugar = BS.BloodSugar, UserId = BS.UserId };
+            db.Entry(data).State = EntityState.Modified;
+            db.BloodSugar.Add(data);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
