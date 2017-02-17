@@ -15,7 +15,8 @@
         
     </div>
     <div>
-        <button onclick="newEvent()" id="search" class="btn btn-default">Search</button>
+        <button onclick="newCalendar()" id="search" class="btn btn-default">new cal</button>
+        <button onclick="getCalendar()" id="search" class="btn btn-default">Search</button>
     </div>
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -167,7 +168,16 @@
               console.log(response);
           });
       }
-        
+      function getCalendar() {
+          var request = gapi.client.calendar.calendarList.list({
+              
+          });
+          //alert(request);
+          request.execute(function (response) {
+              console.log(response.items[0].id);
+              console.log(response);
+          });
+      }
       function newEvent() {
 
           var request = gapi.client.calendar.events.insert({

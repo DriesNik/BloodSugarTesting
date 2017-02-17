@@ -24,6 +24,7 @@ namespace BllodSugarTester.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        
         public DbSet<BloodSugars> BloodSugar { get; set; }
         public static ApplicationDbContext Create()
         {

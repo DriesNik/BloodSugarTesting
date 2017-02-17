@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BllodSugarTester.Models.BloodSugars>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "DisplayNumbers";
+}
+
+<h2>DisplayNumbers</h2>
+
+<table>
+    @foreach (var info in Model)
+    {
+        if (info.UserId == User.Identity.GetUserId())
+        {
+    <tr>
+        <td>
+            <p>@info.BloodSugar, at @info.Time</p>
+        </td>
+    </tr>
+            }
+        }
+    
+</table>

@@ -258,6 +258,10 @@
     <Compile Include="Migrations\201702162143210_pie.Designer.cs">
       <DependentUpon>201702162143210_pie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702162321114_pie1.cs" />
+    <Compile Include="Migrations\201702162321114_pie1.Designer.cs">
+      <DependentUpon>201702162321114_pie1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BloodSugar.cs" />
@@ -333,6 +337,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\google.cshtml" />
     <Content Include="Views\Home\AddingSugar.cshtml" />
+    <Content Include="Views\Home\DisplayNumbers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702162143210_pie.resx">
       <DependentUpon>201702162143210_pie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702162321114_pie1.resx">
+      <DependentUpon>201702162321114_pie1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
