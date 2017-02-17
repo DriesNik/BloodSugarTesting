@@ -1,13 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
-@model BllodSugarTester.Models.AddingSugarViewModel
+@model IEnumerable<BllodSugarTester.Models.caltoid>
 <head>
-    <title>Google Calendar API Quickstart</title>
+    <title>Submit your Blood Sugar</title>
     <meta charset='utf-8' />
 </head>
-@*@if(User.Identity.IsAuthenticated)
-{
-    someLabel = Membership.GetUser().;
-}*@
+
 <body>
     <p>Google Calendar API Quickstart</p>
 
@@ -21,138 +18,141 @@
     </div>
 
     <form method="post">
-    <div>
-        <input name="UserId" value="@User.Identity.GetUserId()"/>
-        <label for="Bs">Blood Sugar:</label>
-        <input type="text" id="blood" name="BloodSugar" value="" />
-    </div>
-    <div>
-        <input onclick="newEvent()" type="submit" id="blood" class="btn btn-default" value="submit">
-    </div>
+        <div>
+            <input name="UserId" value="@User.Identity.GetUserId()" />
+            <label for="Bs">Blood Sugar:</label>
+            <input type="text" id="blood" name="BloodSugar" value="" />
+        </div>
+        <div>
+            <input onclick="newEvent()" type="submit" id="blood" class="btn btn-default" value="Submit">
+        </div>
     </form>
     <div>
-       
+
     </div>
     <script type="text/javascript">
         var CLIENT_ID = '359173490060-648im88guobnnhdb2hoqf3e7taqbrvhr.apps.googleusercontent.com';
 
-      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+        var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
-      var SCOPES = "https://www.googleapis.com/auth/calendar";
+        var SCOPES = "https://www.googleapis.com/auth/calendar";
 
-      var authorizeButton = document.getElementById('authorize-button');
-      var signoutButton = document.getElementById('signout-button');
+        var authorizeButton = document.getElementById('authorize-button');
+        var signoutButton = document.getElementById('signout-button');
 
-      function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-      }
-
-      function initClient() {
-        gapi.client.init({
-          discoveryDocs: DISCOVERY_DOCS,
-          clientId: CLIENT_ID,
-          scope: SCOPES
-        }).then(function () {
-          // Listen for sign-in state changes.
-          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-          // Handle the initial sign-in state.
-          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
-        });
-      }
-
-      function updateSigninStatus(isSignedIn) {
-          if (isSignedIn) {
-
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-          
-        } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
+        function handleClientLoad() {
+            gapi.load('client:auth2', initClient);
         }
-      }
 
-      function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-      }
+        function initClient() {
+            gapi.client.init({
+                discoveryDocs: DISCOVERY_DOCS,
+                clientId: CLIENT_ID,
+                scope: SCOPES
+            }).then(function () {
+                // Listen for sign-in state changes.
+                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-      function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-      }
+                // Handle the initial sign-in state.
+                updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+                authorizeButton.onclick = handleAuthClick;
+                signoutButton.onclick = handleSignoutClick;
+            });
+        }
 
-      function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-      }
+        function updateSigninStatus(isSignedIn) {
+            if (isSignedIn) {
 
-      function newCalendar() {
-          var request = gapi.client.calendar.calendars.insert({
-              "resource":
-                    {
+                authorizeButton.style.display = 'none';
+                signoutButton.style.display = 'block';
 
-                        "summary": "Blood Sugar Numbers",
-                        "description": "nope",
-                        "timezone": "America/Chicago"
-                    }
-          });
-          //alert(request);
-          request.execute(function (response) {
-              console.log(response);
-          });
-      }
+            } else {
+                authorizeButton.style.display = 'block';
+                signoutButton.style.display = 'none';
+            }
+        }
 
-      function newEvent() {
-          var x = document.getElementById("blood").value;
-          console.log(x);
-          var request = gapi.client.calendar.events.insert({
-              "calendarId": @Model.calenID,
-              "start": {
-                  "dateTime":(new Date()).toISOString(),
-                  "timezone": "America/Chicago"
+        function handleAuthClick(event) {
+            gapi.auth2.getAuthInstance().signIn();
+        }
+
+        function handleSignoutClick(event) {
+            gapi.auth2.getAuthInstance().signOut();
+        }
+
+        function appendPre(message) {
+            var pre = document.getElementById('content');
+            var textContent = document.createTextNode(message + '\n');
+            pre.appendChild(textContent);
+        }
+
+        function newCalendar() {
+            var request = gapi.client.calendar.calendars.insert({
+                "resource":
+                      {
+
+                          "summary": "Blood Sugar Numbers",
+                          "description": "nope",
+                          "timezone": "America/Chicago"
+                      }
+            });
+            //alert(request);
+            request.execute(function (response) {
+                console.log(response);
+            });
+        }
+        
+        function newEvent() {
+            @{var y = "";
+                          foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) { y += info.calenID; } } }
+            @*var y = @y.Replace(',','"');*@
+            var x = document.getElementById("blood").value;
+            console.log(x);
+            var request = gapi.client.calendar.events.insert({
+                "calendarId": ('"'+ y +'"'),
+                "start": {
+                    "dateTime": (new Date()).toISOString(),
+                    "timezone": "America/Chicago"
                 },
-              "end": {
-                  "dateTime":(new Date()).toISOString(),
-                  "timezone": "America/Chicago"
-              },
-              "summary": x,
-              "description": "nope",
+                "end": {
+                    "dateTime": (new Date()).toISOString(),
+                    "timezone": "America/Chicago"
+                },
+                "summary": x,
+                "description": "nope",
 
-          });
-          //alert(request);
-          request.execute(function (response) {
-              console.log(response)
-          });
-          
-      }
-      function testThis() {
+            });
+            //alert(request);
+            request.execute(function (response) {
+                console.log(response)
+            });
 
-
+        }
+        function testThis() {
 
 
-              var url = "https://www.googleapis.com/calendar/v3/users/me/calendarList";
-              $.ajax({
-                  type: 'GET',
-                  data: {},
-                  url: url,
-                  dataType: 'json',
-                  scope: 'https://www.googleapis.com/auth/calendar',
-                  success: function (data) {
-
-                      console.log(data);
-
-                      var petfinder = data.petfinder;
 
 
-                  },
-                  error: function (request, error) {
-                      console.log(request, error);
-                  }
-              });
-          };
+            var url = "https://www.googleapis.com/calendar/v3/users/me/calendarList";
+            $.ajax({
+                type: 'GET',
+                data: {},
+                url: url,
+                dataType: 'json',
+                scope: 'https://www.googleapis.com/auth/calendar',
+                success: function (data) {
+
+                    console.log(data);
+
+                    var petfinder = data.petfinder;
+
+
+                },
+                error: function (request, error) {
+                    console.log(request, error);
+                }
+            });
+        };
 
 
 
@@ -160,8 +160,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad()"
-            onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+    @*<script async defer src="https://apis.google.com/js/api.js"
+                onload="this.onload=function(){};handleClientLoad()"
+                onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>*@
 </body>

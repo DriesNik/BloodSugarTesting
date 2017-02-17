@@ -24,7 +24,7 @@ namespace BllodSugarTester.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+        public DbSet<caltoid> caltoid { get; set; }
         public DbSet<BloodSugars> BloodSugar { get; set; }
         public static ApplicationDbContext Create()
         {

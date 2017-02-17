@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using System.Web.Mvc;
 using System.Data.Entity;
 using BllodSugarTester.Models;
+using System.Linq;
 
 namespace BllodSugarTester.Controllers
 {
@@ -37,17 +37,16 @@ namespace BllodSugarTester.Controllers
         }
         public ActionResult google()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var x = db.caltoid;
+            return View(x);
         }
         
         public ActionResult AddingSugar()
         {
             ViewBag.Message = "Your contact page.";
-            var currentUser = _context.Users.FirstOrDefaultAsync(m => m.UserName == User.Identity.GetUserName());
-            
-            return View(currentUser);
+            //var currentUser = _context.Users.FirstOrDefault(m => m.UserName == User.Identity.GetUserName());
+            var x = db.caltoid;
+            return View(x);
         }
 
         [HttpPost]
