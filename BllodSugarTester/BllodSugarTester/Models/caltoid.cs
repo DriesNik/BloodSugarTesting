@@ -14,5 +14,7 @@ namespace BllodSugarTester.Models
         public string Id { get; set; }
        
         public string calenID { get; set; }
+        public int UpperLimit { get; set; }
+        public int LowerLimit { get; set; }
     }
 }

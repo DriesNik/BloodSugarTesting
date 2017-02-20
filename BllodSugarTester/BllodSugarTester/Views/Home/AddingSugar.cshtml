@@ -20,11 +20,19 @@
     <form method="post">
         <div>
             <input name="UserId" value="@User.Identity.GetUserId()" />
+            </div>
+        <div>
+            <label for="Time" >Time :</label>
+        </div>
+        <div>
+            <input type="text" name="Time" value="@DateTime.Now.TimeOfDay.Hours:@DateTime.Now.TimeOfDay.Minutes" />
+        </div>
+        <div>
             <label for="Bs">Blood Sugar:</label>
             <input type="text" id="blood" name="BloodSugar" value="" />
         </div>
         <div>
-            <input onclick="newEvent()" type="submit" id="blood" class="btn btn-default" value="Submit">
+            <input onclick="getCalendar()" type="button"  id="blood" class="btn btn-default" value="Submit">
         </div>
     </form>
     <div>
@@ -102,14 +110,40 @@
             });
         }
         
-        function newEvent() {
+
+        function checkNumber() {
+            var theblood = document.getElementById("blood").value;
+            theblood = parseInt(theblood);
+            
+            
+            @{
+                var low = 0;
+                var high = 0;
+
+                foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) { low += info.UpperLimit; high += info.LowerLimit; } else { low = 0; high = 0; } }
+                        };
+
+                if ( low != 0 && theblood < low) {
+                    alert("you are low");
+                    }
+                if (high != 0 && theblood > high) {
+                    alert("you are high");
+                }
+                else{
+                    alert("Pie")
+                }
+                newEvent();
+        }
+        function newEvent()
+        {
             @{var y = "";
                           foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) { y += info.calenID; } } }
-            @*var y = @y.Replace(',','"');*@
+           
             var x = document.getElementById("blood").value;
             console.log(x);
+            console.log('@y');
             var request = gapi.client.calendar.events.insert({
-                "calendarId": ('"'+ y +'"'),
+                "calendarId": "@y",
                 "start": {
                     "dateTime": (new Date()).toISOString(),
                     "timezone": "America/Chicago"
@@ -118,7 +152,7 @@
                     "dateTime": (new Date()).toISOString(),
                     "timezone": "America/Chicago"
                 },
-                "summary": x,
+                "summary": "147",
                 "description": "nope",
 
             });
@@ -127,6 +161,16 @@
                 console.log(response)
             });
 
+        }
+        function getCalendar() {
+            var request = gapi.client.calendar.calendarList.list({
+
+            });
+            //alert(request);
+            request.execute(function (response) {
+                console.log(response.items[0].id);
+                console.log(response);
+            });
         }
         function testThis() {
 
@@ -160,8 +204,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
-    @*<script async defer src="https://apis.google.com/js/api.js"
+    <script async defer src="https://apis.google.com/js/api.js"
                 onload="this.onload=function(){};handleClientLoad()"
                 onreadystatechange="if (this.readyState === 'complete') this.onload()">
-        </script>*@
+        </script>
 </body>

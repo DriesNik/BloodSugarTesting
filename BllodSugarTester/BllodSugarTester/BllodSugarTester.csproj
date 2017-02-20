@@ -266,6 +266,10 @@
     <Compile Include="Migrations\201702172046064_pie11.Designer.cs">
       <DependentUpon>201702172046064_pie11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702201527195_pies.cs" />
+    <Compile Include="Migrations\201702201527195_pies.Designer.cs">
+      <DependentUpon>201702201527195_pies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BloodSugar.cs" />
@@ -382,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702172046064_pie11.resx">
       <DependentUpon>201702172046064_pie11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702201527195_pies.resx">
+      <DependentUpon>201702201527195_pies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

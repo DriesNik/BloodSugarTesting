@@ -16,7 +16,7 @@
         
     </div>
     <div>
-        <button onclick="newCalendar()" id="search" class="btn btn-default">new cal</button>
+        <button onclick="newEvent()" id="search" class="btn btn-default">new cal</button>
         <button onclick="getCalendar()" id="search" class="btn btn-default">Search</button>
     </div>
     <script type="text/javascript">
@@ -169,7 +169,7 @@
            @{var y = "";
                foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) { y += info.calenID; } } }
           var request = gapi.client.calendar.events.insert({
-              "calendarId": '"' + y + '"',
+              "calendarId": "@y",
               "start": {
                   "dateTime":(new Date()).toISOString(),
                   "timezone": "America/Chicago" 
