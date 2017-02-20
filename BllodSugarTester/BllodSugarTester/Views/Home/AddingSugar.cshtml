@@ -120,7 +120,7 @@
         
 
         function checkNumber(theblood) {
-            ;
+            
             thebloodint = parseInt(theblood);
             
             
@@ -128,18 +128,19 @@
                 var low = 0;
                 var high = 0;
 
-                foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) {  low = info.UpperLimit;  high = info.LowerLimit;
-                    Console.WriteLine("pillow");} }
+                foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) {  high = info.UpperLimit;  low = info.LowerLimit;
+                    } }
                         };
 
             if ( @low != 0 && thebloodint <= @low ) {
-                alert("you are low"));
+                alert("It seems your number is Low, You might want to eat a cup of soup");
                     }
         if (@high != 0 && thebloodint >= @high ) {
-            alert("you are high"));
+
+            alert("It seems that your number is High, You could go for a 15 minute run to lower your Number.");
                 }
                 else{
-                    alert("Pie")
+                    alert("Your Number is in Range, CONGRATULATIONS")
                 }
                 newEvent();
         }
