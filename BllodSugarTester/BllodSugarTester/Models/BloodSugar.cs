@@ -7,7 +7,7 @@ namespace BllodSugarTester.Models
     public class BloodSugars
     {
         
-        private string time;
+        
         [Key]
         public int Id { get; set; }
         public string Time { get; set; }

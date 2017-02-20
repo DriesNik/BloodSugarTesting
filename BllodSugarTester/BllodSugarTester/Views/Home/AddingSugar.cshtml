@@ -28,15 +28,23 @@
             <input type="text" name="Time" value="@DateTime.Now.TimeOfDay.Hours:@DateTime.Now.TimeOfDay.Minutes" />
         </div>
         <div>
-            <label for="Bs">Blood Sugar:</label>
+            <label for="Date">Date :</label>
+        </div>
+        <div>
+            <input type="text" name="Date" value="@DateTime.Now.Date.ToString("d")" />
+        </div>
+        <div>
+            <label for="Bs">Blood Sugar :</label>
+        </div>
+        <div>
             <input type="text" id="blood" name="BloodSugar" value="" />
         </div>
         <div>
-            <input onclick="getCalendar()" type="button"  id="blood" class="btn btn-default" value="Submit">
+            <input onclick="checkNumber(document.getElementById('blood').value)" type="submit"  id="bloody" class="btn btn-default" value="Submit">
         </div>
     </form>
     <div>
-
+        
     </div>
     <script type="text/javascript">
         var CLIENT_ID = '359173490060-648im88guobnnhdb2hoqf3e7taqbrvhr.apps.googleusercontent.com';
@@ -111,23 +119,24 @@
         }
         
 
-        function checkNumber() {
-            var theblood = document.getElementById("blood").value;
-            theblood = parseInt(theblood);
+        function checkNumber(theblood) {
+            ;
+            thebloodint = parseInt(theblood);
             
             
             @{
                 var low = 0;
                 var high = 0;
 
-                foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) { low += info.UpperLimit; high += info.LowerLimit; } else { low = 0; high = 0; } }
+                foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) {  low = info.UpperLimit;  high = info.LowerLimit;
+                    Console.WriteLine("pillow");} }
                         };
 
-                if ( low != 0 && theblood < low) {
-                    alert("you are low");
+            if ( @low != 0 && thebloodint <= @low ) {
+                alert("you are low"));
                     }
-                if (high != 0 && theblood > high) {
-                    alert("you are high");
+        if (@high != 0 && thebloodint >= @high ) {
+            alert("you are high"));
                 }
                 else{
                     alert("Pie")
@@ -136,6 +145,7 @@
         }
         function newEvent()
         {
+            
             @{var y = "";
                           foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) { y += info.calenID; } } }
            
@@ -152,7 +162,7 @@
                     "dateTime": (new Date()).toISOString(),
                     "timezone": "America/Chicago"
                 },
-                "summary": "147",
+                "summary": '"'+x+'"',
                 "description": "nope",
 
             });

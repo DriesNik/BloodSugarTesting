@@ -5,18 +5,34 @@
 }
 
 <h2>DisplayNumbers</h2>
+<div id='displayed'>
 
-<table>
     @foreach (var info in Model)
     {
         if (info.UserId == User.Identity.GetUserId())
         {
-    <tr>
-        <td>
-            <p>@info.BloodSugar, at @info.Time</p>
-        </td>
-    </tr>
+    
+            <p>@info.BloodSugar, at @info.Time, on @info.Date</p>
+       
             }
         }
     
-</table>
+
+</div>
+
+<script >
+    for(var info in Model)
+    {
+       
+        if (info.UserId == User.Identity.GetUserId())
+        {
+    
+        $('displayed').append(
+            "<tr>" +
+            "<td>" + info.BloodSugar + "at" + info.Time + "on" + info.Date + "</td>"
+
+            + "</tr>"
+            );
+        }
+    }
+</script>
