@@ -64,5 +64,9 @@ namespace BllodSugarTester.Controllers
             var x = db.BloodSugar;
             return View(x);
         }
+        public ActionResult Insulin()
+        {
+            return View();
+        }
     }
 }

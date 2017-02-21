@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Insulin";
+}
+
+<h2>Insulin</h2>
+
+
+<div id="calc">
+    <table>
+        
+    </table>
+
+</div>
+
+<div>
+    <label for="CarbAmount">Carb Amount :</label>
+</div>
+<div>
+    <input type="number" id="CarbAmount"/>
+</div>
+<div>
+    <label for="CarbRatio">Carb Ratio(Carbs Per Unit) :</label>
+</div>
+<div>
+    <input type="number" id="CarbRatio" />
+</div>
+<div>
+    <label for="CorrectionUnits">Blood Sugar Correction Number :</label>
+</div>
+<div>
+    <input type="number" id="CorrectionUnits" />
+</div>
+<div>
+    <input onclick="startCalculation()" type="submit" id="unittts" class="btn btn-default" value="Submit">
+</div>
+
+
+
+
+<script>
+
+
+    function startCalculation() {
+        var carbAm = document.getElementById("CarbAmount").value;
+        var correct = document.getElementById("CorrectionUnits").value;
+        var ratio = document.getElementById("CarbRatio").value;
+        $('#calc').empty();
+        var total = Math.round(carbAm / ratio);
+        var cortotal = Math.round(correct / 50);
+        var fulltotal = Math.round(total + cortotal);
+        $('#calc').append(
+            "<h3>"+
+            "<tr>" +
+            "<td>" +"Your total dose is, Base dose("+
+            total + ") + Correction Dose ("+ cortotal + ") for a Grand Total of " + fulltotal + " Units" + "</tr>" +
+            "</td>"+
+            "</h3>"
+            )
+
+    }
+
+</script>

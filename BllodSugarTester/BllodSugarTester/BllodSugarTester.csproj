@@ -347,6 +347,7 @@
     <Content Include="Views\Home\google.cshtml" />
     <Content Include="Views\Home\AddingSugar.cshtml" />
     <Content Include="Views\Home\DisplayNumbers.cshtml" />
+    <Content Include="Views\Home\Insulin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
