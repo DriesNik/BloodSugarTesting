@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BllodSugarTester.Models.BloodSugars>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Month Numbers";
+}
+
+<h2>Displaying This Month's Numbers</h2>
+
+<div id='displayed'>
+
+    @foreach (var info in Model)
+    {
+        var patch = info.Date.Split()[0];
+        @*<p>@DateTime.Now.Date.Month.ToString()</p>*@
+        if (info.UserId == User.Identity.GetUserId() && (patch[0].ToString() ==DateTime.Now.Date.Month.ToString()))
+        {
+
+            @*<p>@patch[0]</p>*@
+            <p>@info.BloodSugar at @info.Time on @info.Date</p>
+
+        }
+    }
+
+
+</div>

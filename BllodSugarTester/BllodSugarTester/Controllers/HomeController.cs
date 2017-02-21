@@ -68,5 +68,10 @@ namespace BllodSugarTester.Controllers
         {
             return View();
         }
+        public ActionResult DisplayNumbersMonth()
+        {
+            var x = db.BloodSugar;
+            return View(x);
+        }
     }
 }

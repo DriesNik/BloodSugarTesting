@@ -24,6 +24,7 @@
                    
 @if (Request.IsAuthenticated)
 {
+    <li>@Html.ActionLink("Dose Checker", "Insulin", "Home")</li>
     <li>@Html.ActionLink("Add Numbers", "AddingSugar", "Home")</li>
     <li>@Html.ActionLink("See Your Numbers", "DisplayNumbers", "Home")</li>
 }

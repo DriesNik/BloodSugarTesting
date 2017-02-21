@@ -11,6 +11,7 @@
     {
         if (info.UserId == User.Identity.GetUserId())
         {
+            
     
             <p>@info.BloodSugar, at @info.Time, on @info.Date</p>
        
@@ -19,20 +20,41 @@
     
 
 </div>
-
+<div>
+    <input onclick="month()" type="submit" id="unittts" class="btn btn-default" value="Submit">
+</div>
 <script >
-    for(var info in Model)
-    {
-       
-        if (info.UserId == User.Identity.GetUserId())
-        {
-    
+    function month() {
+
+
         $('#displayed').append(
             "<tr>" +
-            "<td>" + info.BloodSugar + "at" + info.Time + "on" + info.Date + "</td>"
+            "<td>" + tested()+ "</td>"
 
             + "</tr>"
             );
-        }
+
+    }
+
+
+    function tested() {
+       
+           @foreach (var info in Model)
+           {
+               
+               if (info.UserId == User.Identity.GetUserId())
+               {
+
+
+                   @info.BloodSugar.ToString();
+                   
+                   @*@info.Time.ToString();*@
+                  @info.Date.ToString();
+                       
+
+               }
+
+           }
+           
     }
 </script>
