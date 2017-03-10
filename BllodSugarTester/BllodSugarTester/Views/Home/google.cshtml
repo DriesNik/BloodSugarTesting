@@ -137,7 +137,8 @@
       }
 
       function addEvents() {
-
+          x = 10;
+          return x;
       }
 
       function newCalendar() {
@@ -161,6 +162,7 @@
           });
           //alert(request);
           request.execute(function (response) {
+              return response.items[0].id;
               console.log(response.items[0].id);
               console.log(response);
           });

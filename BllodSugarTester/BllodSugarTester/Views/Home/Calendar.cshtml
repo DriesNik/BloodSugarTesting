@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<BllodSugarTester.Models.caltoid>
+@{
+    ViewBag.Title = "Calendar";
+}
+<body>
+<h2>Calendar</h2>
+
+ <div id="pie">
+     @{
+
+        var apple = "pie";
+         foreach (var info in Model)
+         {
+             if (info.Id == User.Identity.GetUserId())
+             {
+                 apple = ("https://calendar.google.com/calendar/embed?src=" + info.calenID + "&ctz=America/Chicago");
+             }
+         }
+     }
+     <iframe src="@apple" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+ </div>
+    <div id="death">
+
+
+    </div>
+<script type="text/javascript">
+        var CLIENT_ID = '359173490060-648im88guobnnhdb2hoqf3e7taqbrvhr.apps.googleusercontent.com';
+
+        var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+        var SCOPES = "https://www.googleapis.com/auth/calendar";
+
+        var authorizeButton = document.getElementById('authorize-button');
+        var signoutButton = document.getElementById('signout-button');
+
+        function handleClientLoad() {
+            gapi.load('client:auth2', initClient);
+        }
+
+        function initClient() {
+            gapi.client.init({
+                discoveryDocs: DISCOVERY_DOCS,
+                clientId: CLIENT_ID,
+                scope: SCOPES
+            }).then(function () {
+                // Listen for sign-in state changes.
+                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+                // Handle the initial sign-in state.
+                updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+                authorizeButton.onclick = handleAuthClick;
+                signoutButton.onclick = handleSignoutClick;
+            });
+        }
+
+        function updateSigninStatus(isSignedIn) {
+            if (isSignedIn) {
+
+                authorizeButton.style.display = 'none';
+                signoutButton.style.display = 'none';
+
+            } else {
+                authorizeButton.style.display = 'block';
+                signoutButton.style.display = 'none';
+            }
+        }
+
+        function handleAuthClick(event) {
+            gapi.auth2.getAuthInstance().signIn();
+        }
+
+        function handleSignoutClick(event) {
+            gapi.auth2.getAuthInstance().signOut();
+        }
+
+        function appendPre(message) {
+            var pre = document.getElementById('content');
+            var textContent = document.createTextNode(message + '\n');
+            pre.appendChild(textContent);
+        }
+
+
+        @*function li() {
+            $("#death").append(
+                '<p>'
+                + "hi" +
+                '</p>'
+
+                )
+
+
+        }
+    function Appending()
+    {
+
+        @{
+            var apple = "";
+
+            foreach (var info in Model) { if (info.Id == User.Identity.GetUserId()) {  apple=( "https://calendar.google.com/calendar/embed?src=" + info.calenID + "&ctz=America/Chicago");
+            } }
+        }
+        $("#death").append( '<p>hi</p>'+
+            '<iframe src="' + '@apple' +
+            'style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>' +
+    '<iframe src="'+'@apple' +'" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'
+            );*@
+
+        
+    }
+         
+    //    function getCalendar() {
+    //        var request = gapi.client.calendar.calendarList.list({
+
+    //        });
+    //        //alert(request);
+    //        request.execute(function (response) {
+    //            console.log(response.items[0].id);
+    //            console.log(response);
+    //        });
+    //    }
+    //    function getCalendar() {
+    //        var request = gapi.client.calendar.calendarList.list({
+
+    //        });
+    //        //alert(request);
+    //        request.execute(function (response) {
+    //            return response.items[0].id;
+    //            console.log(response.items[0].id);
+    //            console.log(response);
+    //    });
+    //}
+            //function testThis() {
+
+
+
+
+            //    var url = "https://www.googleapis.com/calendar/v3/users/me/calendarList";
+            //    $.ajax({
+            //        type: 'GET',
+            //        data: {},
+            //        url: url,
+            //        dataType: 'json',
+            //        scope: 'https://www.googleapis.com/auth/calendar',
+            //        success: function (data) {
+
+            //            console.log(data);
+
+            //            var petfinder = data.petfinder;
+
+
+            //        },
+            //        error: function (request, error) {
+            //            console.log(request, error);
+            //        }
+            //    });
+            //};
+
+
+        
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+</body>

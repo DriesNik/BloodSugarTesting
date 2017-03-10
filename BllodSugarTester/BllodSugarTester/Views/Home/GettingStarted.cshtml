@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "GettingStarted";
+}
+
+<h2>GettingStarted</h2>
+
+<form method="post">
+    <div>
+        <input type="hidden" name="UserId" value=getCalendar() />
+    </div>
+    <div>
+        <label for="Time">Time :</label>
+    </div>
+    <div>
+        <input type="text" name="Time" value="getCalendar()" />
+    </div>
+    <div>
+        <label for="Date">Date :</label>
+    </div>
+    <div>
+        <input type="text" name="Date" value="@DateTime.Now.Date.ToString("d")" />
+    </div>
+    <div>
+        <label for="Bs">Blood Sugar :</label>
+    </div>
+    <div>
+        <input type="text" id="blood" name="BloodSugar" value="" />
+    </div>
+    <div>
+        <input onclick="checkNumber(document.getElementById('blood').value)" type="submit" id="bloody" class="btn btn-default" value="Submit">
+    </div>
+
+    </form>
+
+<script>
+
+    function getCalendar() {
+        var request = gapi.client.calendar.calendarList.list({
+
+        });
+        //alert(request);
+        request.execute(function (response) {
+           
+            return response.items[0].id;
+            console.log(response.items[0].id);
+            console.log(response);
+        });
+    }
+
+</script>

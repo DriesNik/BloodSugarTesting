@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201702201527195_pies.Designer.cs">
       <DependentUpon>201702201527195_pies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703012020288_nik.cs" />
+    <Compile Include="Migrations\201703012020288_nik.Designer.cs">
+      <DependentUpon>201703012020288_nik.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BloodSugar.cs" />
@@ -277,6 +281,7 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\tabController.cs" />
     <Compile Include="Models\tes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -349,9 +354,14 @@
     <Content Include="Views\Home\DisplayNumbers.cshtml" />
     <Content Include="Views\Home\Insulin.cshtml" />
     <Content Include="Views\Home\DisplayNumbersMonth.cshtml" />
+    <Content Include="Views\Home\GettingStarted.cshtml" />
+    <Content Include="Views\Home\Calendar.cshtml" />
+    <Content Include="Views\Home\email.cshtml" />
+    <Content Include="Views\Home\Emails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\tab\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -391,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702201527195_pies.resx">
       <DependentUpon>201702201527195_pies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703012020288_nik.resx">
+      <DependentUpon>201703012020288_nik.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,61 +1,88 @@
 ﻿@model IEnumerable<BllodSugarTester.Models.BloodSugars>
+    
 @using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "DisplayNumbers";
 }
 
 <h2>DisplayNumbers</h2>
+<div>
+    @*@Html.ActionLink("View This Month's Number", "DisplayNumbersMonth", "Home")*@
+    <input type="number" id="pie" name="value" value="" />
+    <input onclick="month(document.getElementById('pie').value)" id="bloody" class="btn btn-default" value="Search By Month">
+    <input onclick="month(document.getElementById('pie').value)" id="bloody" class="btn btn-default" value="Search This Week">
+</div>
 <div id='displayed'>
-
+   
     @foreach (var info in Model)
     {
-        if (info.UserId == User.Identity.GetUserId())
+        if (info.UserId == User.Identity.GetUserId() || User.Identity.GetUserId() == info.DocID)
         {
-            
+
+            if (User.Identity.GetUserId() == info.DocID)
+            {
+
+               <p> From User : @info.UserId</p>
+            }
+            <p>@info.BloodSugar, at @info.Time, on @info.Date
     
-            <p>@info.BloodSugar, at @info.Time, on @info.Date</p>
-       
+    
+    
+    </p>
+
+        }
+    }
+    @{ var L = 1;
+        var I = 1;}
+    @{foreach (var info in Model)
+        {
+            if (info.UserId == User.Identity.GetUserId() || User.Identity.GetUserId() == info.DocID)
+            {
+                L = L + int.Parse(info.BloodSugar);
+                I = I + 1;
             }
         }
-    
+    }
+    <p> The Average is @(L / I)</p>
+        
+</div>
 
-</div>
-<div>
-    @Html.ActionLink("View This Month's Number", "DisplayNumbersMonth", "Home")
-    
-</div>
+
+
 <script >
-    function month() {
+    function month(item) {
 
+        
+        $('#displayed').empty();
+        var items = $('#displayed');
+        items.append(
 
-        $('#displayed').append(
-            "<tr>" +
-            "<td>" + tested()+ "</td>"
+        @foreach (var info in Model)
+        {
+            if (info.UserId == User.Identity.GetUserId() || User.Identity.GetUserId() == info.DocID)
+            {
+                if (info.Date.Contains("2/"))
+                {
+                    string i = "</p> ";
+                    @info.BloodSugar ;
+                    
+                 @info.Time ;
+                @info.Date;
+                    }
 
-            + "</tr>"
-            );
+                }
+           ;
+            }
+
+        );
+
+        }
+    function week(item) {
+
 
     }
 
 
-    function tested() {
-       
-           @foreach (var info in Model)
-           {
-               
-               if (info.UserId == User.Identity.GetUserId())
-               {
-
-
-                   @info.BloodSugar.ToString();
-                   
-                   @*@info.Time.ToString();*@
-                  @info.Date.ToString();
-                       
-
-               }
-
-           }
-           
-    }
+   
+   
 </script>

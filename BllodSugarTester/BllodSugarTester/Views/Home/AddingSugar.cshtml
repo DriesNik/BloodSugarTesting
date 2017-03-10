@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <p>Google Calendar API Quickstart</p>
+   
 
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize-button" style="display: none;">Authorize</button>
@@ -19,8 +19,11 @@
 
     <form method="post">
         <div>
-            <input name="UserId" value="@User.Identity.GetUserId()" />
+            <input type="hidden" name="UserId" value="@User.Identity.GetUserId()" />
             </div>
+        <div>
+            <input type="hidden" name="DocID" value="1234" />
+        </div>
         <div>
             <label for="Time" >Time :</label>
         </div>
@@ -80,7 +83,7 @@
             if (isSignedIn) {
 
                 authorizeButton.style.display = 'none';
-                signoutButton.style.display = 'block';
+                signoutButton.style.display = 'none';
 
             } else {
                 authorizeButton.style.display = 'block';
@@ -139,9 +142,7 @@
 
             alert("It seems that your number is High, You could go for a 15 minute run to lower your Number.");
                 }
-                else{
-                    alert("Your Number is in Range, CONGRATULATIONS")
-                }
+                
                 newEvent();
         }
         function newEvent()

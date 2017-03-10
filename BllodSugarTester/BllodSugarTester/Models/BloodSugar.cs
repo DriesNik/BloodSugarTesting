@@ -12,6 +12,7 @@ namespace BllodSugarTester.Models
         public int Id { get; set; }
         public string Time { get; set; }
         public string Date { get; set; }
+        public string DocID { get; set; }
         public string BloodSugar { get; set; }
         public string UserId { get; set ; }
         public Boolean AboveRange { get; set; }

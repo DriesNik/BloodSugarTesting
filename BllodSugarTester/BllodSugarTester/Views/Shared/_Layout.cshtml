@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Blood Sugar Tester", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Blood Sugar Logging", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,6 +26,7 @@
 {
     <li>@Html.ActionLink("Dose Checker", "Insulin", "Home")</li>
     <li>@Html.ActionLink("Add Numbers", "AddingSugar", "Home")</li>
+    <li>@Html.ActionLink("Calendar","Calendar","Home")</li>
     <li>@Html.ActionLink("See Your Numbers", "DisplayNumbers", "Home")</li>
 }
                    
@@ -38,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            
         </footer>
     </div>
 
